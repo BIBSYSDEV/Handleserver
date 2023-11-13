@@ -26,7 +26,6 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
       with:
         registry: 100837159538.dkr.ecr.eu-north-1.amazonaws.com/handleserver
-      run: echo "Logged in to Amazon ECR"
 
     - name: Build, tag, and push the image to Amazon ECR
       id: build-image
