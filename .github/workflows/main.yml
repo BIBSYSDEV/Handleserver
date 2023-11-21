@@ -49,7 +49,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: HandleserverTask
+        task-definition: taskdef.json
         container-name: handleserver
         image: ${{ steps.build-image.outputs.image }}
 
