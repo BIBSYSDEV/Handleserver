@@ -45,13 +45,8 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: List files in current directory
-      run: ls .github/workflows -la
-
-     name: Deploy to Amazon ECS service
-      run: |
-        aws ecs update-service --cluster HandleserverCluster --service Handleserver-Service --force-new-deployment
+    - name: Deploy to Amazon ECS service
+      run: aws ecs update-service --cluster HandleserverCluster --service Handleserver-Service --force-new-deployment
 
     - name: Get the URL of the deployed container
       run: echo ${{ steps.deploy.outputs.service-url }}
-      
