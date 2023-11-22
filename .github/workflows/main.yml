@@ -44,7 +44,7 @@ jobs:
         echo "Pushing image to ECR..."
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-        
+
     - name: List files in current directory
       run: ls -la
 
@@ -52,7 +52,7 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ./taskdef.json
+        task-definition: /.github/workflows/taskdef.json
         container-name: handleserver
         image: ${{ steps.build-image.outputs.image }}
 
