@@ -48,14 +48,6 @@ jobs:
     - name: List files in current directory
       run: ls .github/workflows -la
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: .github/workflows/taskdef.json
-        container-name: handleserver
-        image: ${{ steps.build-image.outputs.image }}
-
     - name: Deploy Amazon ECS task definition
       id: deploy
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
