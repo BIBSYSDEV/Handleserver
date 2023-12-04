@@ -32,6 +32,48 @@ jobs:
       with:
         registry: 100837159538.dkr.ecr.eu-north-1.amazonaws.com/handleserver
 
+    - name: Retrieve secret privkey
+      id: retrieve-secret1
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id privkey --query SecretBinary --output text)
+        echo $SECRET | base64 --decode > privkey.bin
+
+    - name: Retrieve secret pubkey
+      id: retrieve-secret2
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id pubkey --query SecretBinary --output text)
+        echo $SECRET | base64 --decode > pubkey.bin
+
+    - name: Retrieve secret admpriv
+      id: retrieve-secret3
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id admpriv --query SecretBinary --output text)
+        echo $SECRET | base64 --decode > admpriv.bin
+      
+    - name: Retrieve secret admpub
+      id: retrieve-secret4
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id admpub --query SecretBinary --output text)
+        echo $SECRET | base64 --decode > admpub.bin
+
+    - name: Retrieve secret serverCertificatePrivateKey
+      id: retrieve-secret5
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id serverCertificatePrivateKey --query SecretBinary --output text)
+        echo $SECRET | base64 --decode > serverCertificatePrivateKey.bin
+
+    - name: Retrieve secret config
+      id: retrieve-secret6
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id config --query SecretString --output text)
+        echo $SECRET > config.dct
+
+    - name: Retrieve secret serverCertificate
+      id: retrieve-secret7
+      run: |
+        SECRET=$(aws secretsmanager get-secret-value --secret-id serverCertificate --query SecretString --output text)
+        echo $SECRET > serverCertificate.pem
+
     - name: Build, tag, and push the image to Amazon ECR
       id: build-image
       env:

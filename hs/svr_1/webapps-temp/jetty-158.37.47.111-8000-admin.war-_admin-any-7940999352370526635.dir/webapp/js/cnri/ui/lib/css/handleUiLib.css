@@ -1,0 +1,32 @@
+.well-light {
+	background-color: #ffffff;
+}
+
+.handleValueEditor {
+    margin-bottom: 3px;
+}
+
+#handleDiv {
+    background-color : white;
+}
+
+.handleValueEditor textarea {
+    width : 100%;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    resize: vertical;
+    -moz-box-sizing: border-box;
+}
+
+.vlistIndex {
+    width : 10%;
+}
+
+.vlistHandle {
+    width : 30%;
+}
+
+.unusualPermission {
+    color : red;
+}
+

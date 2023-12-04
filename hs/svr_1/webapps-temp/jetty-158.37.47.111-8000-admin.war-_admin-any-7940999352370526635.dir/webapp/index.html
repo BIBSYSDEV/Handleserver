@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" /> 
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src *; script-src 'self'; child-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; report-uri report.csp-violation">
+<!-- note that we are not restricting connect-src. This is so that we can make api calls to the various handle servers around the world  -->
+<title>Handle Client</title>
+<!-- BEGIN STYLESHEETS -->
+<!-- the minify shell scripts must be edited if anything below changes -->
+<link rel="stylesheet" href="lib/bootstrap-3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/adminTool.css">
+<link rel="stylesheet" href="js/cnri/ui/lib/css/bootstrap-select.min.css">
+<!-- <link rel="stylesheet" href="js/cnri/ui/lib/css/handleUiLib.css">-->
+<!-- END STYLESHEETS -->
+</head>
+<body>
+	<div id="maindiv" class="container">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">Handle Client</span>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                                <li><a id="listHandlesMenuItem" href="#">List Handles</a></li>
+                                <li><a id="listPrefixesMenuItem" href="#">List Prefixes</a></li>
+                                <li><a id="homePrefixMenuItem" href="#">Home Prefix</a></li>
+                                <li><a id="querySpecificSiteMenuItem" href="#">Query Specific Site</a></li>
+                                <li><a id="clientConfigMenuItem" href="#">Client Configuration</a></li>
+                                <li><a id="siteStatusMenuItem" href="#">Site Status</a></li>
+                </ul>
+              </li>
+              <li><a href="http://hdl.handle.net/4263537/5047" target="_blank">Help</a></li>
+            </ul>
+			<form id="authenticateDiv" class="navbar-form navbar-right" role="form"></form>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+		<div id="notificationsDiv"></div>
+		<div id="createHandleDiv" class="well content-panel"></div>
+        <div id="handleDiv" class="well content-panel" style="display:none;"></div>
+        <div id="listHandlesDiv" class="well content-panel" style="display:none;"></div>
+        <div id="listPrefixesDiv" class="well content-panel" style="display:none;"></div>
+        <div id="homePrefixDiv" class="well content-panel" style="display:none;"></div>
+        <div id="querySpecificSiteDiv" class="well content-panel" style="display:none;"></div>
+        <div id="clientConfigDiv" class="well content-panel" style="display:none;"></div>
+        <div id="siteStatusDiv" class="well content-panel" style="display:none;"></div>
+	    <footer class="footer">
+	        <div id="versionInfo" style="display:inline-block"></div>
+	    </footer>
+	</div>
+<!-- BEGIN SCRIPTS -->
+<!-- the minify shell scripts must be edited if anything below changes -->
+    <script type="text/javascript" src="lib/jquery-2.1.1.min.js" ></script>
+	
+	<script type="text/javascript" src="lib/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/typeahead.bundle.min.js"></script>
+	
+    <script type="text/javascript" src="lib/amplify/amplify.min.js"></script>
+    <script type="text/javascript" src="lib/qrcodejs/qrcode.min.js"></script>
+    <script type="text/javascript" src="lib/vkbeautify.js"></script>
+    
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/libpolycrypt.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/common/util.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/core-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/cipher-core-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/aes-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/sha1-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/sha256-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/hmac-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/tripledes-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/md5-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/mode-ecb-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/CryptoJS/pbkdf2-min.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/jsbn.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/jsbn2.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/prng4.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/rng.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/rsa.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/rsa2.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/polycrypt/back/lib/rsasign-1.2.js"></script>
+    <script type="text/javascript" src="js/cnri/util/lib/ortjs/dsa.js"></script>
+    
+    <script type="text/javascript" src="js/cnri/util/FunctionUtil.js"></script>
+    <script type="text/javascript" src="js/cnri/util/BitString.js"></script>
+    <script type="text/javascript" src="js/cnri/util/Encoder.js"></script>
+    <script type="text/javascript" src="js/cnri/util/EncryptionUtil.js"></script>
+    <script type="text/javascript" src="js/cnri/util/EncryptionAsync.js"></script>
+    <script type="text/javascript" src="js/cnri/util/HsEncoder.js"></script>
+    <script type="text/javascript" src="js/cnri/util/ClientSideFileSaver.js"></script>
+    <script type="text/javascript" src="js/cnri/util/StringUtil.js"></script>
+    <script type="text/javascript" src="js/cnri/util/KeyPairVerifier.js"></script>
+    <script type="text/javascript" src="js/cnri/util/KeyListVerifier.js"></script>
+    <script type="text/javascript" src="js/cnri/util/HandleUtil.js"></script>
+    <script type="text/javascript" src="js/cnri/util/HandleSignatureUtil.js"></script>
+    <script type="text/javascript" src="js/cnri/util/Equality.js"></script>
+    <script type="text/javascript" src="js/cnri/util/ObjectChangeDetector.js"></script>
+    <script type="text/javascript" src="js/cnri/util/Timer.js"></script>
+    
+    <script type="text/javascript" src="js/cnri/ui/lib/js/cnri.ui.ComboBox.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/lib/js/bootstrap-select.min.js"></script>
+    
+    <script type="text/javascript" src="js/cnri/ui/HandleAdminApp.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/VersionInfoWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/Notifications.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ResolveAndCreateHandleWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/HsAuthenticatorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/HomePrefixWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ListHandlesWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ListPrefixesWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/QuerySpecificSiteWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ClientConfigWidget.js"></script>
+
+    <script type="text/javascript" src="js/cnri/ui/HandleEvents.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/HandleEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/HandleValueEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/HandleValueAdvancedEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/SearchResultsPagination.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/DataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/AdminDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/UrlDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/EmailDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/VlistDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/KeyDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/BlankDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/SiteDataEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ServerEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/InterfaceEditorWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/VlistEntryWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ClientSideFileWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ModalYesNoDialog.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/SiteStatusWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/SiteStatusVersionZeroViewer.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/SiteStatusVersionOneViewer.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/SiteReplicationInfoViewer.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/ModalQrCodeDialog.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/CreateHandleSignatureWidget.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/CreateHandleSignatureDialog.js"></script>
+    <script type="text/javascript" src="js/cnri/ui/VerificationStatusWidget.js"></script>
+    
+    <script type="text/javascript" src="js/cnri/hdl/client/HandleClient.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/AbstractOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/GetOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/PutOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/DeleteOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/HomePrefixOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/UnhomePrefixOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/ListHandlesOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/ListPrefixesOperation.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/SiteRetriever.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/SessionTracker.js"></script>
+    <script type="text/javascript" src="js/cnri/hdl/client/Session.js"></script>  
+    <script type="text/javascript" src="js/cnri/hdl/client/HandleValueSummary.js"></script>  
+    <script type="text/javascript" src="js/cnri/hdl/client/LocalAuthenticator.js"></script> 
+    <script type="text/javascript" src="js/cnri/hdl/client/HandleSignatureVerifier.js"></script> 
+    
+    <script type="text/javascript" src="js/cnri/ui/Main.js"></script>
+<!-- END SCRIPTS -->
+</body>
+</html>

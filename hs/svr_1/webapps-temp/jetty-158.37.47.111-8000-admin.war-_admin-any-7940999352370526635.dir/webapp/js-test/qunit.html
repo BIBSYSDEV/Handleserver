@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QUnit Tests</title>
+  <link rel="stylesheet" href="qunit-1.12.0.css"/>
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="qunit-1.12.0.js"></script>
+<!-- BEGIN SCRIPTS -->
+  <script type="text/javascript" src="../lib/jquery-2.1.1.min.js" ></script>
+  <script type="text/javascript" src="../lib/vkbeautify.js" ></script>
+
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/prng4.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/rng.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/jsbn.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/jsbn2.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/CryptoJS/core-min.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/CryptoJS/sha1-min.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/lib/CryptoJS/sha256-min.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/common/util.js"></script>
+  <script src="../js/cnri/util/lib/polycrypt/back/libpolycrypt.js"></script>
+  <script src="../js/cnri/util/lib/ortjs/dsa.js"></script>
+  <script src="../js/cnri/util/FunctionUtil.js"></script>
+  <script src="../js/cnri/util/Encoder.js"></script>
+  <script src="../js/cnri/util/EncryptionUtil.js"></script>
+  <script src="../js/cnri/util/BitString.js"></script>
+  <script src="../js/cnri/util/EncryptionAsync.js"></script>
+  <script src="../js/cnri/util/HsEncoder.js"></script>
+  <script src="../js/cnri/util/StringUtil.js"></script>
+  <script src="../js/cnri/util/KeyPairVerifier.js"></script>
+  <script src="../js/cnri/util/HandleUtil.js"></script>
+  <script src="../js/cnri/util/HandleSignatureUtil.js"></script>
+
+  <script src="../js/cnri/hdl/client/HandleClient.js"></script>
+  <script src="../js/cnri/hdl/client/LocalAuthenticator.js"></script>
+  <script src="../js/cnri/hdl/client/AbstractOperation.js"></script>
+  <script src="../js/cnri/hdl/client/GetOperation.js"></script>
+  <script src="../js/cnri/hdl/client/DeleteOperation.js"></script>
+  <script src="../js/cnri/hdl/client/PutOperation.js"></script>
+  <script src="../js/cnri/hdl/client/ListHandlesOperation.js"></script>
+  <script src="../js/cnri/hdl/client/HomePrefixOperation.js"></script>
+  <script src="../js/cnri/hdl/client/UnhomePrefixOperation.js"></script>
+  <script src="../js/cnri/hdl/client/Session.js"></script>
+  <script src="../js/cnri/hdl/client/SessionTracker.js"></script>
+  <script src="../js/cnri/hdl/client/SiteRetriever.js"></script>
+<!-- END SCRIPTS -->
+  <script src="cnri.util.TestUtil.js"></script>
+  <script src="cnri.util.EncryptionUtilTest.js"></script>
+  <script src="cnri.util.BitStringTest.js"></script>
+  <script src="cnri.util.HandleClientCreateAndResolveTest.js"></script>
+  <script src="cnri.util.HandleUtilTest.js"></script>
+  <script src="cnri.util.SecretKeyAuthTest.js"></script>
+  <script src="cnri.util.BasicAuthTest.js"></script>
+  <script src="cnri.util.LocalAuthenticatorTest.js"></script>
+  <script src="cnri.util.ModifyHandleTest.js"></script>
+  <script src="cnri.util.ListHandlesTest.js"></script>
+  <script src="cnri.util.HomePrefixTest.js"></script>
+  <script src="cnri.util.BadPrivateKeyTest.js"></script>
+</body>
+</html>

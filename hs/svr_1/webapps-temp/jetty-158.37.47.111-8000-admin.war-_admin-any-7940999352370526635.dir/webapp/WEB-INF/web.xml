@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<filter>
+		<filter-name>ContentSecurityPolicyFilter</filter-name>
+		<filter-class>net.cnri.handleadmin.webservices.ResponseHeaderFilter</filter-class>
+		<init-param>
+			<param-name>header</param-name>
+			<param-value>Content-Security-Policy</param-value>
+		</init-param>
+		<init-param>
+			<param-name>value</param-name>
+			<param-value>default-src 'none'; connect-src *; script-src 'self'; child-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; report-uri report.csp-violation</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>ContentSecurityPolicyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <servlet>
+        <servlet-name>ReportCspViolation</servlet-name>
+        <servlet-class>net.cnri.handleadmin.webservices.ReportCspViolationServlet</servlet-class>
+        <init-param>
+          <param-name>cspViolationUri</param-name>
+          <param-value>https://hdl.handle.net/4263537/5049</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportCspViolation</servlet-name>
+        <url-pattern>*.csp-violation</url-pattern>
+    </servlet-mapping>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>everything</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+</web-app>

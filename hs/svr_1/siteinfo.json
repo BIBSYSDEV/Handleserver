@@ -1,0 +1,43 @@
+{
+  "version": 0,
+  "protocolVersion": "2.5",
+  "serialNumber": 2,
+  "primarySite": true,
+  "multiPrimary": false,
+  "attributes": [
+    {
+      "name": "desc",
+      "value": "Development Handle server at Sikt"
+    }
+  ],
+  "servers": [
+    {
+      "serverId": 1,
+      "address": "127.0.0.1",
+      "publicKey": {
+        "format": "base64",
+        "value": "AAAAC0RTQV9QVUJfS0VZAAAAAAAVAJdgUI8VIwvMspK5gqLrhAvwWBz1AAAAgQD9f1OBHXUSKVLfSpwu7OTn9hG3UjzvRADDHj+AtlEmaUVdQCJR+1k9jVj6v8X1ujD2y5tVbNeBO4AdNG/yZmC3a5lQpaSfn+gEexAiwk+7qdf+t8Yb+DtX58aophUPBPuD9tPFHsMCNVQTWhaRMvZ1864rYdcq7/IiAxmd0UgBxwAAAIEA9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSoAAACAPdtMBkaMZUpHwLiXrLo5l4cFLpGJEjI9Hv5TpLsqmIEMRZQK/LoJyDQWg7jWVgw+GBOfmv9eDn/u5v6MiPOUG+SUum1Ld7FiJFr9zXfApdbbi25Tq12odAhFHUDJOdaKV1pBm5YEvFXIQ0HBSMw1de7+2Btr1IGLCWRwmzkScl4="
+      },
+      "interfaces": [
+        {
+          "query": true,
+          "admin": true,
+          "protocol": "TCP",
+          "port": 2641
+        },
+        {
+          "query": true,
+          "admin": false,
+          "protocol": "UDP",
+          "port": 2641
+        },
+        {
+          "query": true,
+          "admin": true,
+          "protocol": "HTTP",
+          "port": 8000
+        }
+      ]
+    }
+  ]
+}

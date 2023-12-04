@@ -1,0 +1,221 @@
+body {
+/* padding-top : 45px;*/    
+    background-color: rgb(229, 229, 229);
+/*    font-family: Roboto, Arial, sans-serif;*/
+}
+
+button:focus {
+	outline : none;
+}
+
+label {
+	font-weight: normal;
+}
+ 
+.handleValueEditorShortForm label {
+	margin-bottom : 0px;
+}
+
+.handleValueEditor .form-group {
+	margin-bottom : 0px;
+}
+
+.progress {
+    position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: black;
+ }
+
+h4 {
+    font-weight: 100;
+    font-size: 25px;
+}
+
+.handle-list {
+    margin-top : 5px;
+}
+
+.list-handles-link {
+    display : block;
+}
+
+.content-panel {
+    background-color: white;
+}
+
+.qrcode-body img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.authenticateModeSelect form {
+    margin-bottom : 0px;
+    margin-top : 5px;
+}
+
+.authenticatedDiv form {
+    margin-bottom : 0px;
+}
+
+.handleValueEditor form {
+    margin-bottom : 1px;
+    margin-top : 1px;
+}
+
+.handleValueSelected {
+    background-color : white;
+}
+
+.resolveHandleButton {
+    min-width: 70px;   
+}
+
+.createHandleButton {
+    min-width: 96px;   
+}
+
+.createAndMintHandleButton {
+	min-width: 162px;  
+}
+
+.saveHandleButton {
+    min-width: 87px;   
+}
+
+.deleteHandleButton {
+    min-width: 94px;   
+}
+
+.unHomePrefixButton {
+    min-width: 101px;
+}
+
+.homePrefixButton {
+    min-width: 87px;
+}
+
+.handleInput {
+    width : 100% !important;
+}
+
+.notifications-small .alert {
+    margin-bottom: 0px;
+}
+
+.clientConfigWidget textarea {
+    width : 100%;
+    height : 120px;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    resize: vertical;
+    -moz-box-sizing: border-box;
+}
+
+.index-input {
+	width: 4em !important;
+	padding: 5px !important;
+}
+
+/* */
+.well-light {
+    background-color: #ffffff;
+}
+
+.handleValueEditor {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    padding: 9px;
+}
+
+#handleDiv {
+    background-color : white;
+}
+
+.handleValueEditor textarea {
+    width : 100%;
+    box-sizing: border-box;
+    margin-bottom: 0px;
+    resize: vertical;
+    -moz-box-sizing: border-box;
+}
+
+.vlistIndex {
+    width : 10%;
+}
+
+.vlistHandle {
+    width : 30%;
+}
+
+.unusualPermission {
+    color : red;
+}
+
+/* */
+
+
+#createHandleDiv form {
+    margin-bottom : 5px;
+}
+
+.modal-body {
+    max-height: 800px;
+}
+
+.admin-permission-button.active {
+/*    background-color: darkgrey;*/ 
+/*     color: #ffffff;*/
+}
+
+.admin-permission-button.active:before {
+    content:"\2713  "; 
+}
+
+#selectable .ui-selecting { 
+    background: DarkGray;
+}
+
+#selectable .ui-selected { 
+    background: DarkGray;
+}
+
+#selectable { list-style-type: none; 
+    margin: 0; 
+    padding: 0;
+}
+
+/* Twitter Typeahead */
+
+.twitter-typeahead {
+    width : 46% !important;
+	line-height: 28px;
+}
+
+.tt-hint {
+    color: rgb(153, 153, 153);
+}
+
+.tt-dropdown-menu {
+	width: 100%;
+    padding: 4px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tt-suggestion {
+    padding: 6px;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.tt-suggestion p {
+	margin: 0;
+}

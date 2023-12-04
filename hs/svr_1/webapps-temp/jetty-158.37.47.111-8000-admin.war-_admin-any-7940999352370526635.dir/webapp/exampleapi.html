@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" /> 
+<title>Handle Client</title>
+<link rel='stylesheet' href='css/adminTool.bundle.min.css'/>
+</head>
+<body>
+    <div id="maindiv">
+        <textarea id="output1"></textarea>
+        <textarea id="output2"></textarea>
+    
+    </div>
+<script type='text/javascript' src='js/jquery-2.1.1.min.js'></script>
+<script type='text/javascript' src='js/dependencies.min.js'></script>
+<script type='text/javascript' src='js/cnri.util.min.js'></script>
+<script type='text/javascript' src='js/cnri.ui.min.js'></script>
+<script type='text/javascript' src='js/cnri.hdl.client.min.js'></script>
+
+<script>
+
+var clientConfig = {
+        useProxyAsRoot : true,
+        proxyUrl : "https://hdl.handle.net",
+        rootUrl : "https://132.151.1.179:8000" 
+};
+var client = new cnri.hdl.util.HandleClient(clientConfig);
+
+//Public resolution
+client.get("10.1045/january2010-reilly", onGetHandleSuccess1, onGetHandleError1);
+
+
+
+
+function onGetHandleSuccess1(response) {
+    $("#output1").text(JSON.stringify(response));
+} 
+
+function onGetHandleError1(response) {
+    $("#output1").text(JSON.stringify(response));
+}
+
+</script>
+</body>
+</html>
