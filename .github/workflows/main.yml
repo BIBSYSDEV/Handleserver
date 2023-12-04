@@ -36,43 +36,43 @@ jobs:
       id: retrieve-secret1
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id privkey --query SecretBinary --output text)
-        echo $SECRET | base64 --decode > ./svr_1/privkey.bin
+        echo $SECRET | base64 --decode > ./hs/svr_1/privkey.bin
 
     - name: Retrieve secret pubkey
       id: retrieve-secret2
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id pubkey --query SecretBinary --output text)
-        echo $SECRET | base64 --decode > ./svr_1/pubkey.bin
+        echo $SECRET | base64 --decode > ./hs/svr_1/pubkey.bin
 
     - name: Retrieve secret admpriv
       id: retrieve-secret3
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id admpriv --query SecretBinary --output text)
-        echo $SECRET | base64 --decode > ./svr_1/admpriv.bin
+        echo $SECRET | base64 --decode > ./hs/svr_1/admpriv.bin
       
     - name: Retrieve secret admpub
       id: retrieve-secret4
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id admpub --query SecretBinary --output text)
-        echo $SECRET | base64 --decode > ./svr_1/admpub.bin
+        echo $SECRET | base64 --decode > ./hs/svr_1/admpub.bin
 
     - name: Retrieve secret serverCertificatePrivateKey
       id: retrieve-secret5
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id serverCertificatePrivateKey --query SecretBinary --output text)
-        echo $SECRET | base64 --decode > ./svr_1/serverCertificatePrivateKey.bin
+        echo $SECRET | base64 --decode > ./hs/svr_1/serverCertificatePrivateKey.bin
 
     - name: Retrieve secret config
       id: retrieve-secret6
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id config --query SecretString --output text)
-        echo $SECRET > ./svr_1/config.dct
+        echo $SECRET > ./hs/svr_1/config.dct
 
     - name: Retrieve secret serverCertificate
       id: retrieve-secret7
       run: |
         SECRET=$(aws secretsmanager get-secret-value --secret-id serverCertificate --query SecretString --output text)
-        echo $SECRET > ./svr_1/serverCertificate.pem
+        echo $SECRET > ./hs/svr_1/serverCertificate.pem
 
     - name: Build, tag, and push the image to Amazon ECR
       id: build-image
