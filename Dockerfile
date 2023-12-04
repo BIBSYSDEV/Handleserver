@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-alpine
+FROM public.ecr.aws/docker/library/alpine:3.17
 
 RUN apk add --no-cache gettext
 
